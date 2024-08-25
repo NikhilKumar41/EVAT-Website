@@ -13,8 +13,27 @@ const SigninPage = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailSignin = () => {
-    // Implement sign-in logic
+  const handleEmailSignin = async () => {
+    try {
+      const response = await fetch('http://localhost:8001/api/users/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password}),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        // Handle successful sign-in, e.g., navigate to another screen or store user token
+        console.log('Sign-in successful', data);
+      } else {
+        // Handle sign-in error, e.g., display an error message
+        console.log('Sign-in failed', data.message);
+      }
+    } catch (error) {
+      console.error('Error signing in:', error);
+    }
   };
 
   const handleGoogleSignin = () => {
@@ -102,7 +121,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
-    alignSelf: 'center', // Centers the logo horizontally
+    alignSelf: 'center',
   },
   title: {
     fontSize: 52,

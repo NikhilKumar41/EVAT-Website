@@ -16,8 +16,27 @@ const SignupPage = ({navigation}) => {
   const [phone, setPhone] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleEmailSignup = () => {
-    // Implement signup logic
+  const handleEmailSignup = async () => {
+    try {
+      const response = await fetch('http://localhost:8001/api/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name, country, phone, isSubscribed}),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        // Handle successful sign-up
+        console.log('Sign-up successful', data);
+      } else {
+        // Handle sign-up error
+        console.log('Sign-up failed', data.message);
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
   };
 
   const handleGoogleSignup = () => {
