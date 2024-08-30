@@ -18,7 +18,7 @@ const SignupPage = ({navigation}) => {
 
   const handleEmailSignup = async () => {
     try {
-      const response = await fetch('http://localhost:8001/api/users/signup', {
+      const response = await fetch('http://localhost:8001/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

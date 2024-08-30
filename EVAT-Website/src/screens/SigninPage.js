@@ -15,7 +15,7 @@ const SigninPage = ({navigation}) => {
 
   const handleEmailSignin = async () => {
     try {
-      const response = await fetch('http://localhost:8001/api/users/signin', {
+      const response = await fetch('http://localhost:8001/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
