@@ -6,17 +6,23 @@
 - Introduction
 - Features
 - Installation
-- Usage
-- Development
+- Running in Development
 - Contributing
 - Code Quality
 - Git Etiquette
 - License
 - Contact
 
+---
+
 ## Introduction
 
 The EVAT mobile application allows users to find the nearest vehicle charging station efficiently and is designed to streamline vehicle management. This repository contains the DevOps codebase for the EVAT web application.
+
+### Project Repo
+https://github.com/Chameleon-company/EVAT-Web-Application
+
+---
 
 ## Features
 
@@ -25,75 +31,136 @@ The EVAT mobile application allows users to find the nearest vehicle charging st
 - Add Vehicle
 - View Vehicle Details
 
+Note: The Application is not as 'featureful' as the Website.
+
+---
+
 ## Installation
 
+### Clone the Repository and Install Dependencies Using Comman Line
 To get started with the project, follow these steps:
 
 1. Clone the repository:
-
     ```bash
-    git clone https://github.com/yourusername/EVAT-web-application.git
+    git clone https://github.com/<yourusername>/EVAT-web-application.git
     ```
 
 2. Navigate to the project directory:
-
     ```bash
     cd EVAT-web-application
     ```
 
 3. Install dependencies:
-
     ```bash
     npm install
     ```
 
-## Usage
+### Alternative, Use GitHub Desktop
+1. Download and Install GitHub Desktop. https://github.com/apps/desktop. Follow the installation process on the website if you are confused.
+2. Sign in to GitHub via GitHub Desktop. Confirm log in by click File > Options > Accounts.
+3. Clone the repo by clicking File > Clone Repository...
+4. Go to the URL tab and paste the project repository path from above. set the clone directory
+5. Open terminal and navigate to the clone directory that you just set.
+6. Install dependencies with `npm install`
 
-To start the development server, run:
+### Download, Install and Set Up Android Studio to run a Virtual Device
+1. Download and install Android Studio. https://developer.android.com/studio.
+   - Click 'Next' until the install is complete. The default options should include `Android SDK` and `Android Virtual Device`. These are all you need for now.
+2. Install Android 14.0
+   - Open Android Studio. It may ask you to install additional components. Accept them and continue.
+   - Click on `More Actions` and select `SDK Manager`.
+   - Click on `Show Package Details` below the list container. 
+   - Go to `Android 14.0 ("UpsideDownCake")` with the API Level of 34. Select `Android SDK Platform 34` and `Sources for Android 34`.
+   - Click `Apply`.
+3. Install build tools.
+   - Click on `More Actions` and select `SDK Manager`.
+   - Click on the `SDK Tools` tab.
+   - Select `Android Emulator` and `Android SDK Platform-Tools`.
+   - Click on `Show Package Details` below the list container.
+   - Under `Android SDK Build-Tools`, look for and select `34.0.0`
+   - Click `Apply`.
+4. Add environment variables
+   - Go to the system environment variables.
+   - Click `New...` under the System Variables. Fill out the fields:
+     - `Variable name: ANDROID_HOME`
+     - `Variable value: C:\Users\YourUsername\AppData\Local\Android\Sdk`
+   - Click `OK`
+   - Double-click on Path. Add the following 3 paths by clicking `New`.
+      - `%ANDROID_HOME%\platform-tools`
+      - `%ANDROID_HOME%\emulator`
+      - `%ANDROID_HOME%\build-tools`
+   - Keep clicking `OK` until the environmental variables window is closed.
+   - To test that this works, open Command Prompt (not Powershell) and type `echo %ANDROID_HOME%`. It should reply with the path that you just put in.
+5. Creating a Virtual Device
+   - Open Android Studio. Click on `More Actions` and select `Virtual Device Manager`.
+   - Click `Create Virtual Device`.
+   - Select a device that supports API 34 (this means anything showing 35+ is not an option). Click `Next`.
+   - Name the device and under API select `API 34 "UpsideDownCake"; Android 14.0`.
+   - Select a system image and click `Finish`. Note: if the image has not been downloaded before, it will download and might be over 1GB.
+   - Click `Finish` once the downlaod is complete.
+6. Run the Virtual Device
+   - In the Android Studio Device Manager, your new virtual device should appear.
+   - Click the play button to start the virtual device.
+   - Wait for it to load to the Home screen.
+     - If it gets to the Home screen, you can run the Application
+     - If not, there is an error
+7. Handling an Error
+   - Open the terminal to the directory of the repo. Use the following command to find the problem.
+   - `npx react-native doctor`
+   - Press 'f' or 'e' to fix the issues the remain. Run the doctor line again to check it was successful.
+   - If that still does not work, ask an AI to help.
 
-```bash
-npm start
-```
+### Backend
+For the Application (and Website) to work, you must run the Backend locally. This should change in the future.
+Go to https://github.com/Chameleon-company/EVAT-App-BE to follow the steps on how to install and run the backend.
 
-## Development
+---
 
-To run the front end project locally, from the root project run:
+## Running in Development
 
-```bash
-cd front_end_project && npm run start
-```
+### Backend
+If the Backend still needs to be run locally, run the Backend server first. Follow the instructions of the backend README.md to get it running. In short:
+- Open a terminal
+- Navigate to the local repository clone directory
+- Use `npm run server`
 
-To run the back end project locally, from the root project run:
+### Application
+1. Run the Virtual Device in Ardroid Studio.
+2. Open a terminal (a second one if running the backend locally).
+   - Navigate to the repository directory
+   - Use `npm run start`
+   - Press `a` for Android or `i` for iOS
+3. Wait for Virtual Device to load the Application. It should appear automatically.
 
-```bash
-cd back_end_project && npm run start
-```
+### Alternative, use shortcuts
+You can use the following commands instead of `npm run start`:
+- `npm start` - the same result as `npm run start`
+- `npm run android` - skips a step and goes straight to loading the Android app on the virtual device
+- `npm run ios` - skips a step and goes straight to loading the iOS app on the virtual device
 
-To launch both the node server and react app, run:
+If you are using Yarn:
+- `yarn start`
+- `yarn android`
+- `yarn ios`
 
-```bash
-npm run devall
-```
-
-Note: npm run devall isn’t working currently.
-To launch the node server alone, run:
-
-```bash
-npm run server
-```
+### Important
 
 This can be used by API developers to test their API through POSTMAN.
 Development should follow the Feature branch git workflow. Important: Never commit directly to main.
 When pulling the latest from GitHub, you may need to run npm install  if any packages were added or removed in past commits. If you are experiencing errors unrelated to the code you are writing (or before writing any), try running npm install.
 
+---
+
 ## Contributing
 
 We welcome contributions! Please follow these steps to contribute:
-**Fork the repository.**
-**Create a new branch:**
+
+### Creating Branches Using Comman Line
+
+**Fork the repository.** Create a new branch:
 
 ```bash
-git checkout -b feature/your-feature
+git checkout -b feature/<your-feature>
 ```
 
 Commit your changes:
@@ -105,8 +172,16 @@ git commit -m 'Add some feature'
 Push to the branch:
 
 ```bash
-git push origin feature/your-feature
+git push origin feature/<your-feature>
 ```
+
+### Alternative, Use GitHub Desktop
+1. Click the dropdown on the `Current branch`.
+2. Click `New branch`.
+3. Name the branch `feature/<your-feature>`.
+4. Click `Create branch`.
+
+---
 
 ## Code Quality
 
@@ -119,6 +194,8 @@ Code quality is enforced by ESLint, which is configured as a custom eslint plugi
 - Single quotes for strings.
 - Do not use string interpolation for CSS classes.
 - Do not use CSS-in-JS, StyledComponents, or Emotion CSS.
+
+---
 
 ## Git Etiquette
 
@@ -133,6 +210,8 @@ Using the example branches of main -> feature-1 -> feature-2…
 ✅ Do branch feature-2 from main since it should not depend on feature-1.
 Note: If it’s entirely necessary to merge feature-1 before feature-2, ensure that no manual commits are made in feature-2 between the last commit & merge commit to main of feature-1.
 ```
+
+---
 
 ## Commit Messages
 
@@ -149,6 +228,8 @@ The preferred format for a commit message looks like this. Note that only the bo
 "fix(US-123): fixed some issue"
 "fix(component): fixed some issue"
 ```
+
+---
 
 ## Commit Types
 
@@ -169,6 +250,8 @@ The preferred format for a commit message looks like this. Note that only the bo
 - **body** refers to the bulk of the commit message, which can break up into header and footer sections delimited by newlines.
   - A **header** is the body section on the first line of the commit message.
   - A **footer** is entered a full newline separated from the header and may contain any length of UTF-8 content.
+
+---
 
 ## APIs
 
@@ -226,8 +309,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  768657f (Readme.md)
-=======
+
+---
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+
+---
 
 # Getting Started
 
