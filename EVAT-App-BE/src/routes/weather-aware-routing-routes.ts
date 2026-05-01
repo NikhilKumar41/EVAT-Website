@@ -37,7 +37,7 @@ const router = express.Router();
  * /api/weather-aware-routing/predict:
  *   post:
  *     tags:
- *       - weatherAwareRouting
+ *       - Weather Aware Routing
  *     summary:
  *       Predict energy consumption
  *     description:
