@@ -35,6 +35,5 @@ npm run dev
 
 - Some legacy/unused files remain from the original repos (e.g. React Native leftovers, duplicate config) pending team confirmation before removal
 - `NavBar.jsx` / `Navbar.jsx` case-duplicate file issue in `EVAT-Website/src/components/` needs resolving
-- Remaining repos (`EVAT-Chatbot`, `EVAT-Data-Science`, `EVAT-Web-Application`, `EVAT-application-frontend`) still to be migrated
-
+  
 ---
